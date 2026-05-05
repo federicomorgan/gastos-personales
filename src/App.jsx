@@ -4,6 +4,8 @@ import { supabase } from './supabaseClient'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ForgotPassword from './pages/ForgotPassword'
+import ResetPassword from './pages/ResetPassword'
 import Dashboard from './pages/Dashboard'
 import Movimientos from './pages/Movimientos'
 import NuevoMovimiento from './pages/NuevoMovimiento'
@@ -70,7 +72,10 @@ function AppRoutes() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session); setLoading(false)
     })
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => setSession(session))
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setSession(session)
+      if (event === 'PASSWORD_RECOVERY') window.location.replace('/reset-password')
+    })
     return () => subscription.unsubscribe()
   }, [])
 
@@ -86,8 +91,10 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/login"      element={session ? <Navigate to="/dashboard" replace /> : <Login />} />
-      <Route path="/register"   element={session ? <Navigate to="/dashboard" replace /> : <Register />} />
+      <Route path="/login"           element={session ? <Navigate to="/dashboard" replace /> : <Login />} />
+      <Route path="/register"        element={session ? <Navigate to="/dashboard" replace /> : <Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/reset-password"  element={<ResetPassword />} />
       <Route path="/dashboard"  element={protect(Dashboard)} />
       <Route path="/movimientos" element={protect(Movimientos)} />
       <Route path="/nuevo"      element={protect(NuevoMovimiento)} />
