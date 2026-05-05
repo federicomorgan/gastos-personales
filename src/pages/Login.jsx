@@ -55,8 +55,14 @@ export default function Login() {
 
         {/* Logo */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
-            💰
+          <div style={{ width: '40px', height: '40px', background: 'rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="24" width="8" height="12" rx="2.5" fill="white"/>
+              <rect x="16" y="16" width="8" height="20" rx="2.5" fill="white" opacity="0.85"/>
+              <rect x="28" y="8" width="8" height="28" rx="2.5" fill="white"/>
+              <polyline points="6,18 16,12 26,6 34,2" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
+              <polyline points="30,2 34,2 34,6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
+            </svg>
           </div>
           <span style={{ color: '#fff', fontWeight: '800', fontSize: '20px', letterSpacing: '-0.3px' }}>Mis Gastos</span>
         </div>
@@ -88,8 +94,14 @@ export default function Login() {
 
           {/* Header móvil */}
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-            <div style={{ width: '56px', height: '56px', background: 'linear-gradient(135deg, #E63946, #c1121f)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '26px', margin: '0 auto 16px', boxShadow: '0 8px 24px rgba(230,57,70,0.35)' }}>
-              💰
+            <div style={{ width: '56px', height: '56px', background: 'linear-gradient(135deg, #E63946, #c1121f)', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', boxShadow: '0 8px 24px rgba(230,57,70,0.35)' }}>
+              <svg width="28" height="28" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4" y="24" width="8" height="12" rx="2.5" fill="white"/>
+                <rect x="16" y="16" width="8" height="20" rx="2.5" fill="white" opacity="0.85"/>
+                <rect x="28" y="8" width="8" height="28" rx="2.5" fill="white"/>
+                <polyline points="6,18 16,12 26,6 34,2" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
+                <polyline points="30,2 34,2 34,6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
+              </svg>
             </div>
             <h1 style={{ fontSize: '26px', fontWeight: '800', color: '#111827', letterSpacing: '-0.5px', marginBottom: '6px' }}>
               Bienvenido de nuevo
