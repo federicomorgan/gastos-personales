@@ -105,7 +105,14 @@ export default function Dashboard({ session }) {
   })
   const totalIngresos = mesActual.filter(m => m.tipo === 'ingreso').reduce((s, m) => s + Number(m.monto), 0)
   const totalEgresos  = mesActual.filter(m => m.tipo === 'egreso').reduce((s, m) => s + Number(m.monto), 0)
-  const balance = totalIngresos - totalEgresos
+
+  // ── Saldo arrastrado de meses anteriores ──
+  const inicioMesActual = new Date(ahora.getFullYear(), ahora.getMonth(), 1)
+  const mesesAnteriores = movimientos.filter(m => new Date(m.fecha + 'T00:00:00') < inicioMesActual)
+  const saldoArrastrado = mesesAnteriores.filter(m => m.tipo === 'ingreso').reduce((s, m) => s + Number(m.monto), 0)
+                        - mesesAnteriores.filter(m => m.tipo === 'egreso').reduce((s, m) => s + Number(m.monto), 0)
+
+  const balance = saldoArrastrado + totalIngresos - totalEgresos
 
   // ── Mes anterior ──
   const prevDate = new Date(ahora.getFullYear(), ahora.getMonth() - 1, 1)
@@ -352,6 +359,11 @@ export default function Dashboard({ session }) {
           <p style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--text)', lineHeight: '1', letterSpacing: '-0.02em' }}>
             <AnimatedNumber value={balance} />
           </p>
+          {saldoArrastrado !== 0 && (
+            <p style={{ fontSize: '11px', color: 'var(--text-3)', marginTop: '6px' }}>
+              {saldoArrastrado >= 0 ? '+' : ''}{formatARS(saldoArrastrado)} arrastrado de meses anteriores
+            </p>
+          )}
           <DeltaBadge pct={pct(balance, ingPasado - egPasado)} goodIfPositive />
         </div>
       </div>
